@@ -6,7 +6,7 @@
   <link href="https://shaojunda.me/atom.xml" rel="self"/>
   
   <link href="https://shaojunda.me/"/>
-  <updated>2020-11-25T15:40:21.791Z</updated>
+  <updated>2020-11-25T15:43:04.882Z</updated>
   <id>https://shaojunda.me/</id>
   
   <author>
@@ -21,16 +21,12 @@
     <link href="https://shaojunda.me/tencent-lighthouse-get-started.html"/>
     <id>https://shaojunda.me/tencent-lighthouse-get-started.html</id>
     <published>2020-11-24T16:57:53.000Z</published>
-    <updated>2020-11-25T15:40:21.791Z</updated>
+    <updated>2020-11-25T15:43:04.882Z</updated>
     
     <content type="html"><![CDATA[<p>今年双十一在腾讯云买了一台 1 核 2 G 3M 的轻量应用服务器，3 年 253 感觉做一些简单的服务和测试应该够用了。记录一下通过 SSH 连接轻量云服务器的步骤。</p><h2 id="重制密码"><a href="#重制密码" class="headerlink" title="重制密码"></a>重制密码</h2><ol><li>登陆服务控制台</li><li>在服务器列表中找到相应的实例</li><li>关机</li><li>在「实例信息」栏中点击「重置密码」</li></ol><h2 id="配置密钥"><a href="#配置密钥" class="headerlink" title="配置密钥"></a>配置密钥</h2><ol><li>登录轻量应用服务器控制台，并单击左侧导航栏中的「密钥」</li><li>在密钥列表页面，单击「创建密钥」</li><li>在弹出的「创建SSH密钥」窗口中，设置密钥的所属地域，选择密钥的创建方式，单击「确定」</li><li>在密钥列表选择要绑定的 ssh 密钥，单击「绑定/解绑实例」</li><li>下载密钥文件到本地</li></ol><h2 id="配置-ssh"><a href="#配置-ssh" class="headerlink" title="配置 ssh"></a>配置 ssh</h2><p>修改 ssh 配置文件 <code>~/.ssh/config</code> 增加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Host light</span><br><span class="line">    HostName 「公网 IP」</span><br><span class="line">    port 22</span><br><span class="line">    User 「用户名」</span><br><span class="line">    IdentityFile 「密钥文件路径」</span><br><span class="line">    TCPKeepAlive yes</span><br><span class="line">    ForwardAgent yes</span><br></pre></td></tr></table></figure><h2 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h2><p>更新好 ssh 配置文件之后即可通过命令行登陆到服务器 <code>ssh light</code></p><p>从购买到配置整体感觉比阿里云更容易上手，指引也更明确。</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;p&gt;今年双十一在腾讯云买了一台 1 核 2 G 3M 的轻量应用服务器，3 年 253 感觉做一些简单的服务和测试应该够用了。记录一下通过 SSH 连接轻量云服务器的步骤。&lt;/p&gt;
-&lt;h2 id=&quot;重制密码&quot;&gt;&lt;a href=&quot;#重制密码&quot; class=&quot;headerlink&quot;</summary>
-      
+    <summary type="html">腾讯云轻量应用服务器 SSH 配置</summary>
     
     
     
