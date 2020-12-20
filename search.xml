@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>cache-design-patterns</title>
+      <title>Cache Design Patterns</title>
       <link href="cache-design-patterns.html"/>
       <url>cache-design-patterns.html</url>
       
@@ -14,9 +14,9 @@
       
         <tags>
             
-            <tag> cache </tag>
-            
             <tag> programing </tag>
+            
+            <tag> cache </tag>
             
         </tags>
       
@@ -35,9 +35,9 @@
       
         <tags>
             
-            <tag> programing </tag>
-            
             <tag> golang </tag>
+            
+            <tag> programing </tag>
             
         </tags>
       
