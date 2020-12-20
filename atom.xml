@@ -6,7 +6,7 @@
   <link href="https://shaojunda.me/atom.xml" rel="self"/>
   
   <link href="https://shaojunda.me/"/>
-  <updated>2020-11-29T16:59:30.605Z</updated>
+  <updated>2020-12-20T18:21:49.805Z</updated>
   <id>https://shaojunda.me/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cache-design-patterns</title>
+    <link href="https://shaojunda.me/cache-design-patterns.html"/>
+    <id>https://shaojunda.me/cache-design-patterns.html</id>
+    <published>2020-12-20T15:50:50.000Z</published>
+    <updated>2020-12-20T18:21:49.805Z</updated>
+    
+    <content type="html"><![CDATA[<p>一个项目中之前缓存的设计有一些缺陷，所以重新学习了一下缓存设计的一些常见套路，准备重新设计一下项目中的缓存方案。</p><h2 id="Cache-Aside"><a href="#Cache-Aside" class="headerlink" title="Cache Aside"></a>Cache Aside</h2><p>一种比较常见的缓存模式。</p><ol><li>数据读取策略</li></ol><ul><li>应用先向缓存服务请求数据；</li><li>如果有，直接返回数据给请求方；</li><li>如果没有，则去数据库中查询结果并返回给请求方；</li><li>应用更新数据到缓存中。</li></ul><ol start="2"><li>数据更新策略</li></ol><ul><li>应用先更新数据库；</li><li>应用再令缓存失效。</li></ul><p><img src="/images/cache-aside.png"></p><a id="more"></a><p><strong>注意</strong> 这里一定要先更新数据库再令缓存失效，不然可能出现数据不一致的情况。比如进程 A 更新数据，先令缓存失效了这时进程 B 来读缓存发现没有去数据库中拿数据，此时数据库还没有更新这是 B 进程拿到的就是旧数据并且写入到缓存中。</p><h2 id="Read-Through"><a href="#Read-Through" class="headerlink" title="Read Through"></a>Read Through</h2><p>用来处理读取数据的场景，应用只能看到缓存服务，数据库对应用来说是透明的。</p><h3 id="数据读取策略"><a href="#数据读取策略" class="headerlink" title="数据读取策略"></a>数据读取策略</h3><ul><li>应用向缓存服务请求数据；</li><li>如果有，直接返回数据给请求方；</li><li>如果没有，缓存服务查询数据库，并更新缓存；</li><li>缓存服务将数据返回请求方。</li></ul><h2 id="Write-Through"><a href="#Write-Through" class="headerlink" title="Write Through"></a>Write Through</h2><p>用来处理数据更新的场景。</p><h3 id="数据更新策略"><a href="#数据更新策略" class="headerlink" title="数据更新策略"></a>数据更新策略</h3><ul><li>应用向缓存服务发出写请求；</li><li>如果有，缓存服务先更新缓存中数据，再更新数据库；</li><li>如果没有，缓存服务直接更新数据库；</li><li>缓存服务告知应用更新完成；</li></ul><p><img src="/images/read-write-through.png"></p><h2 id="Write-back"><a href="#Write-back" class="headerlink" title="Write back"></a>Write back</h2><p>在更新数据的时候，只更新缓存，不更新数据库。缓存服务异步批量地更新数据库。这样就可以拥有较大的请求吞吐能力，也不用担心数据库短时间无法访问，但是缺点也很明显，数据不是强一致的且容易丢失。</p>]]></content>
+    
+    
+    <summary type="html">cache design patterns</summary>
+    
+    
+    
+    
+    <category term="cache" scheme="https://shaojunda.me/tags/cache/"/>
+    
+    <category term="programing" scheme="https://shaojunda.me/tags/programing/"/>
+    
+  </entry>
   
   <entry>
     <title>Effective go 笔记-01</title>
@@ -31,9 +52,9 @@
     
     
     
-    <category term="golang" scheme="https://shaojunda.me/tags/golang/"/>
-    
     <category term="programing" scheme="https://shaojunda.me/tags/programing/"/>
+    
+    <category term="golang" scheme="https://shaojunda.me/tags/golang/"/>
     
   </entry>
   
