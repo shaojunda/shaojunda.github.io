@@ -1,3 +1,4 @@
+https://shaojunda.me/mysql-isolation.html
 https://shaojunda.me/cache-design-patterns.html
 https://shaojunda.me/effective-go-notes-01.html
 https://shaojunda.me/tencent-lighthouse-get-started.html

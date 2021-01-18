@@ -6,7 +6,7 @@
   <link href="https://shaojunda.me/atom.xml" rel="self"/>
   
   <link href="https://shaojunda.me/"/>
-  <updated>2020-12-20T18:36:28.168Z</updated>
+  <updated>2021-01-18T12:32:59.707Z</updated>
   <id>https://shaojunda.me/</id>
   
   <author>
@@ -17,13 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql-isolation</title>
+    <link href="https://shaojunda.me/mysql-isolation.html"/>
+    <id>https://shaojunda.me/mysql-isolation.html</id>
+    <published>2021-01-18T12:18:19.000Z</published>
+    <updated>2021-01-18T12:32:59.707Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天复习了一下 MySQL 的隔离级别，SQL 标准的事务隔离级别包括：</p><ul><li>读未提交（read uncommitted）：一个事务还没提交时，事务中所做的改动就能被其他事务看到。</li><li>读提交（read committed）：一个事务提交之后，事务中所做的改动才会被其他事务看到。</li><li>可重复读（repeatable read）：一个事务执行过程中所看到的数据与这个事务开始时看到的数据始终一致。未提交时该事务所做的改动其他事务也无法看到。</li><li>串行化（serializable）：对于用一行记录同一时刻只能有一个人操作，读操作会加读锁，写操作会加写锁，遇到锁冲突时，后访问的事务需要等前一个事务提交之后方可继续执行。</li></ul><p>MySQL 和 PostgreSQL 的默认隔离级别都是「读提交（read committed）」，可以通过执行<br><code>show variables like &#39;transaction_isolation&#39;;</code> 来查看。</p>]]></content>
+    
+    
+    <summary type="html">MySQL 隔离性 隔离级别</summary>
+    
+    
+    
+    
+    <category term="db" scheme="https://shaojunda.me/tags/db/"/>
+    
+    <category term="MySQL" scheme="https://shaojunda.me/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Cache Design Patterns</title>
     <link href="https://shaojunda.me/cache-design-patterns.html"/>
     <id>https://shaojunda.me/cache-design-patterns.html</id>
     <published>2020-12-20T15:50:50.000Z</published>
-    <updated>2020-12-20T18:36:28.168Z</updated>
+    <updated>2020-12-20T19:02:44.265Z</updated>
     
-    <content type="html"><![CDATA[<p>一个项目中之前缓存的设计有一些缺陷，所以重新学习了一下缓存设计的一些常见套路，准备重新设计一下项目中的缓存方案。</p><h2 id="Cache-Aside"><a href="#Cache-Aside" class="headerlink" title="Cache Aside"></a>Cache Aside</h2><p>一种比较常见的缓存模式。</p><ol><li>数据读取策略</li></ol><ul><li>应用先向缓存服务请求数据；</li><li>如果有，直接返回数据给请求方；</li><li>如果没有，则去数据库中查询结果并返回给请求方；</li><li>应用更新数据到缓存中。</li></ul><ol start="2"><li>数据更新策略</li></ol><ul><li>应用先更新数据库；</li><li>应用再令缓存失效。</li></ul><p><img src="/images/cache-aside.png"></p><a id="more"></a><p><strong>注意</strong> 这里一定要先更新数据库再令缓存失效，不然可能出现数据不一致的情况。比如进程 A 更新数据，先令缓存失效了这时进程 B 来读缓存发现没有去数据库中拿数据，此时数据库还没有更新这是 B 进程拿到的就是旧数据并且写入到缓存中。</p><h2 id="Read-Through"><a href="#Read-Through" class="headerlink" title="Read Through"></a>Read Through</h2><p>用来处理读取数据的场景，应用只能看到缓存服务，数据库对应用来说是透明的。</p><h3 id="数据读取策略"><a href="#数据读取策略" class="headerlink" title="数据读取策略"></a>数据读取策略</h3><ul><li>应用向缓存服务请求数据；</li><li>如果有，直接返回数据给请求方；</li><li>如果没有，缓存服务查询数据库，并更新缓存；</li><li>缓存服务将数据返回请求方。</li></ul><h2 id="Write-Through"><a href="#Write-Through" class="headerlink" title="Write Through"></a>Write Through</h2><p>用来处理数据更新的场景。</p><h3 id="数据更新策略"><a href="#数据更新策略" class="headerlink" title="数据更新策略"></a>数据更新策略</h3><ul><li>应用向缓存服务发出写请求；</li><li>如果有，缓存服务先更新缓存中数据，再更新数据库；</li><li>如果没有，缓存服务直接更新数据库；</li><li>缓存服务告知应用更新完成。</li></ul><p><img src="/images/read-write-through.png"></p><h2 id="Write-back"><a href="#Write-back" class="headerlink" title="Write back"></a>Write back</h2><p>在更新数据的时候，只更新缓存，不更新数据库。缓存服务异步批量地更新数据库。这样就可以拥有较大的请求吞吐能力，也不用担心数据库短时间无法访问，但是缺点也很明显，数据不是强一致的且容易丢失。</p>]]></content>
+    <content type="html"><![CDATA[<p>一个项目中之前缓存的设计有一些缺陷，所以重新学习了一下缓存设计的一些常见套路，准备重新设计一下项目中的缓存方案。</p><h2 id="Cache-Aside"><a href="#Cache-Aside" class="headerlink" title="Cache Aside"></a>Cache Aside</h2><p>一种比较常见的缓存模式。</p><ol><li>数据读取策略</li></ol><ul><li>应用先向缓存服务请求数据；</li><li>如果有，直接返回数据给请求方；</li><li>如果没有，则去数据库中查询结果并返回给请求方；</li><li>应用更新数据到缓存中。</li></ul><ol start="2"><li>数据更新策略</li></ol><ul><li>应用先更新数据库；</li><li>应用再令缓存失效。</li></ul><p><img src="/images/cache-aside.png"></p><a id="more"></a><p><strong>注意</strong> 这里一定要先更新数据库再令缓存失效，不然可能出现数据不一致的情况。比如进程 A 更新数据，先令缓存失效了这时进程 B 来读缓存发现没有去数据库中拿数据，此时数据库还没有更新这是 B 进程拿到的就是旧数据并且写入到缓存中。</p><h2 id="Read-Through"><a href="#Read-Through" class="headerlink" title="Read Through"></a>Read Through</h2><p>用来处理读取数据的场景，应用只能看到缓存服务，数据库对应用来说是透明的。</p><h3 id="数据读取策略"><a href="#数据读取策略" class="headerlink" title="数据读取策略"></a>数据读取策略</h3><ul><li>应用向缓存服务请求数据；</li><li>如果有，直接返回数据给请求方；</li><li>如果没有，缓存服务查询数据库，并更新缓存；</li><li>缓存服务将数据返回请求方。</li></ul><h2 id="Write-Through"><a href="#Write-Through" class="headerlink" title="Write Through"></a>Write Through</h2><p>用来处理数据更新的场景。</p><h3 id="数据更新策略"><a href="#数据更新策略" class="headerlink" title="数据更新策略"></a>数据更新策略</h3><ul><li>应用向缓存服务发出写请求；</li><li>如果有，缓存服务先更新缓存中数据，再更新数据库；</li><li>如果没有，缓存服务直接更新数据库；</li><li>缓存服务告知应用更新完成。</li></ul><p><img src="/images/read-write-through.png"></p><h2 id="Write-Back"><a href="#Write-Back" class="headerlink" title="Write Back"></a>Write Back</h2><p>在更新数据的时候，只更新缓存，不更新数据库。缓存服务异步批量地更新数据库。这样就可以拥有较大的请求吞吐能力，也不用担心数据库短时间无法访问，但是缺点也很明显，数据不是强一致的且容易丢失。</p>]]></content>
     
     
     <summary type="html">cache design patterns</summary>
