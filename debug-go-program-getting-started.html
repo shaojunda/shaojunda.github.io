@@ -26,6 +26,7 @@ ga('send', 'pageview');</script><meta http-equiv="Cache-Control" content="no-tra
 
 <p>可以看到 <code>Entry point address: 0x455780</code> 这个就是 <code>hello.go</code> 程序的执行入口。接下来使用 <code>dlv</code> 对 <code>hello.go</code> 程序进行调试。</p>
 <p>执行 <code>dlv exec ./hello</code> 会进入到调试模式</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@4158ddf6b44d home]# dlv exec .&#x2F;hello</span><br><span class="line">Type &#39;help&#39; for list of commands.</span><br><span class="line">(dlv)</span><br></pre></td></tr></table></figure>
 
 <p>输入 <code>help</code> 可以看到可用的命令列表</p>
