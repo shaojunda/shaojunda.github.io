@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shaojunda.me/use-pem-login-remote-server.html</loc>
+    
+    <lastmod>2021-05-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shaojunda.me/debug-go-program-getting-started.html</loc>
     
     <lastmod>2021-05-23</lastmod>
@@ -60,7 +67,7 @@
 
   <url>
     <loc>https://shaojunda.me/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,56 +75,56 @@
   
   <url>
     <loc>https://shaojunda.me/tags/cache/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/programing/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/golang/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/dlv/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/DB/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/MySQL/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/ssh/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://shaojunda.me/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -126,7 +133,7 @@
   
   <url>
     <loc>https://shaojunda.me/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2021-05-23</lastmod>
+    <lastmod>2021-05-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>ssh 使用 pem 文件登录远程服务器</title>
+      <link href="use-pem-login-remote-server.html"/>
+      <url>use-pem-login-remote-server.html</url>
+      
+        <content type="html"><![CDATA[<p>今天尝试了一些 AWS 的 Lightsail 发现它的 ssh 是需要使用 pem 文件进行远程登录的，记录一下登录方式。<br>以我申请到的账号为例：</p><ul><li>用户名: ubuntu</li><li>IP: 192.168.1.101 （举例）</li><li>pem name: LightsailDefaultKey-ap-northeast-1.pem</li></ul><h3 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h3><ul><li><p><code>ssh -i LightsailDefaultKey-ap-northeast-1.pem ubuntu@192.168.1.101</code></p><a id="more"></a><p>执行后报错如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">Permissions 0644 for &#39;LightsailDefaultKey-ap-northeast-1.pem&#39; are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key &quot;LightsailDefaultKey-ap-northeast-1.pem&quot;: bad permissions</span><br><span class="line">ubuntu@192.168.1.101: Permission denied (publickey).</span><br></pre></td></tr></table></figure></li><li><p>执行 <code>chmod 0600 LightsailDefaultKey-ap-northeast-1.pem</code> 后上述报错会消失</p></li><li><p>执行 <code>ssh-add -K LightsailDefaultKey-ap-northeast-1.pem</code></p></li></ul><p>之后就可以通过 <code>ssh ubuntu@192.168.1.101</code> 登录到远程服务器了。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+            <tag> 服务器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>debug Go 程序入门介绍之 Delve 篇</title>
       <link href="debug-go-program-getting-started.html"/>
       <url>debug-go-program-getting-started.html</url>
